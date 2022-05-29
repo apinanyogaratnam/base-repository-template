@@ -1,6 +1,8 @@
 IMAGE := base-repository-template
 VERSION := 0.0.1
-REGISTRY_URL := ghcr.io/apinanyogaratnam/${IMAGE}:${VERSION}
+REGISTRY_URL := ghcr.io/apinanyogaratnam/${IMAGE}
+IMAGE_VERSION_NAME := ${REGISTRY_URL}:${VERSION}
+IMAGE_LATEST_VERSION_NAME := ${REGISTRY_URL}:latest
 
 build:
 	docker build -t ${IMAGE} .
@@ -15,11 +17,13 @@ auth:
 	grep -v '^#' .env.local | grep -e "CR_PAT" | sed -e 's/.*=//' | docker login ghcr.io -u USERNAME --password-stdin
 
 tag:
-	docker tag ${IMAGE} ${REGISTRY_URL}
+	docker tag ${IMAGE} ${IMAGE_LATEST_VERSION_NAME}
+	docker tag ${IMAGE} ${IMAGE_VERSION_NAME}
 	git tag -m "v${VERSION}" v${VERSION}
 
 push:
-	docker push ${REGISTRY_URL}
+	docker push ${IMAGE_LATEST_VERSION_NAME}
+	docker push ${IMAGE_VERSION_NAME}
 	git push --tags
 
 all:
