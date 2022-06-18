@@ -21,10 +21,18 @@ tag:
 	docker tag ${IMAGE} ${IMAGE_VERSION_NAME}
 	git tag -m "v${VERSION}" v${VERSION}
 
+tag-image:
+	docker tag ${IMAGE} ${IMAGE_LATEST_VERSION_NAME}
+	docker tag ${IMAGE} ${IMAGE_VERSION_NAME}
+
 push:
 	docker push ${IMAGE_LATEST_VERSION_NAME}
 	docker push ${IMAGE_VERSION_NAME}
 	git push --tags
+
+push-image:
+	docker push ${IMAGE_LATEST_VERSION_NAME}
+	docker push ${IMAGE_VERSION_NAME}
 
 all:
 	make build && make auth && make tag && make push
