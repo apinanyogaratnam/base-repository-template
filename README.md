@@ -1,6 +1,6 @@
 # README Boilerplate
 
-A template of README best practices to make your README simple to understand and easy to use. 
+A template of README best practices to make your README simple to understand and easy to use.
 
 ## Table of Contents
 
