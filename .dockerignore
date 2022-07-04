@@ -9,3 +9,4 @@ README.md
 .env.production
 .vscode
 volumes
+.DS_Store

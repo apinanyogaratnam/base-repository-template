@@ -3,3 +3,4 @@
 *.env
 .env.production
 volumes
+.DS_Store
